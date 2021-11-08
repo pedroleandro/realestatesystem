@@ -47,4 +47,10 @@ class AuthController extends Controller
         $json['redirect'] = route('admin.home');
         return response()->json($json);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('admin.login');
+    }
 }
