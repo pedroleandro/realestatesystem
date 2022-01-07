@@ -50,9 +50,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-
         $userCreate = User::create($request->all());
-
         var_dump($userCreate);
     }
 
@@ -71,11 +69,12 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
         $user = User::where('id', $id)->first();
+
         return view('admin.users.edit', [
             'user' => $user
         ]);
@@ -86,11 +85,22 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::where('id', $id)->first();
+
+        $user->setLessorAttribute($request->lessor);
+        $user->setLesseeAttribute($request->lessee);
+        $user->setAdminAttribute($request->admin);
+        $user->setClientAttribute($request->client);
+
+        $user->fill($request->all());
+        $user->save();
+
+        return redirect()->route('admin.users.index');
+
     }
 
     /**
