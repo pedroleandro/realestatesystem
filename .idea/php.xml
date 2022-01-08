@@ -104,6 +104,9 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/nexmo/client-core" />
       <path value="$PROJECT_DIR$/vendor/nexmo/client" />
+      <path value="$PROJECT_DIR$/vendor/rosell-dk/webp-convert" />
+      <path value="$PROJECT_DIR$/vendor/rosell-dk/image-mime-type-guesser" />
+      <path value="$PROJECT_DIR$/vendor/coffeecode/cropper" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
