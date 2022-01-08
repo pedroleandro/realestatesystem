@@ -57,6 +57,7 @@
 
                     @csrf
                     @method("PUT")
+                    <input type="hidden" name="id" value="{{ $user->id }}">
 
                     <div class="nav_tabs_content">
                         <div id="data">
@@ -588,4 +589,10 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+
+    </script>
 @endsection
