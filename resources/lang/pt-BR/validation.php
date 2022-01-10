@@ -209,6 +209,11 @@ return [
         'spouse_income' => 'renda do(a) cônjuge',
         'spouse_company_work' => 'empresa do(a) cônjuge',
 
+        //Company
+        'social_name' => 'razão social',
+        'alias_name' => 'nome fantasia',
+        'document_company' => 'CNPJ',
+        'document_company_secondary' => 'inscrição estadual'
 
     ],
 
