@@ -6,23 +6,27 @@ use Illuminate\Http\Request;
 use LaraDev\Company;
 use LaraDev\Http\Controllers\Controller;
 use LaraDev\Http\Requests\Admin\CompanyRequest;
+use LaraDev\User;
 
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
-        return view('admin.companies.index');
+        $companies = Company::all();
+        return view('admin.companies.index', [
+            'companies' => $companies
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
@@ -37,10 +41,9 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-        $company = new Company();
-        $company->fill($request->all());
+        $newCompany = Company::create($request->all());
 
-        var_dump($company->getAttributes());
+        var_dump($newCompany);
     }
 
     /**
@@ -58,11 +61,18 @@ class CompanyController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        $company = Company::where('id', $id)->first();
+
+        $users = User::orderBy('name')->get();
+
+        return view('admin.companies.edit', [
+            'company' => $company,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -70,11 +80,17 @@ class CompanyController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
-        //
+        $company = Company::where('id', $id)->first();
+        $company->fill($request->all());
+        $company->save();
+
+        return redirect()->route('admin.companies.edit', [
+            'company' => $company->id
+        ])->with(['color' => 'green', 'message' => 'Empresa atualizada com sucesso']);
     }
 
     /**
