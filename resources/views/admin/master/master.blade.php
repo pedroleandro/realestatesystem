@@ -32,7 +32,8 @@
 <div class="dash">
     <aside class="dash_sidebar">
         <article class="dash_sidebar_user">
-            <img class="dash_sidebar_user_thumb" src="{{ url(asset('backend/assets/images/avatar.jpg')) }}" alt="" title=""/>
+            <img class="dash_sidebar_user_thumb"
+                 src="{{ url(asset('backend/assets/images/avatar.jpg')) }}" alt="" title=""/>
 
             <h1 class="dash_sidebar_user_name">
                 <a href="">Gustavo Web</a>
@@ -43,12 +44,17 @@
             <li class="dash_sidebar_nav_item active {{ isActive('admin.home') }}">
                 <a class="icon-tachometer" href="{{ route('admin.home') }}">Dashboard</a>
             </li>
-            <li class="dash_sidebar_nav_item {{ isActive('admin.users') }} {{ isActive('admin.companies') }}"><a class="icon-users" href="{{ route('admin.users.index') }}">Clientes</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.users') }} {{ isActive('admin.companies') }}"><a
+                    class="icon-users" href="{{ route('admin.users.index') }}">Clientes</a>
                 <ul class="dash_sidebar_nav_submenu">
-                    <li class="{{ isActive('admin.users.index') }}"><a href="{{ route('admin.users.index') }}">Ver Todos</a></li>
-                    <li class="{{ isActive('admin.companies.index') }}"><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
-                    <li class="{{ isActive('admin.users.team') }}"><a href="{{ route('admin.users.team') }}">Time</a></li>
-                    <li class="{{ isActive('admin.users.create') }}"><a href="{{ route('admin.users.create') }}">Criar Novo</a></li>
+                    <li class="{{ isActive('admin.users.index') }}"><a href="{{ route('admin.users.index') }}">Ver
+                            Todos</a></li>
+                    <li class="{{ isActive('admin.companies.index') }}"><a href="{{ route('admin.companies.index') }}">Empresas</a>
+                    </li>
+                    <li class="{{ isActive('admin.users.team') }}"><a href="{{ route('admin.users.team') }}">Time</a>
+                    </li>
+                    <li class="{{ isActive('admin.users.create') }}"><a href="{{ route('admin.users.create') }}">Criar
+                            Novo</a></li>
                 </ul>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-home" href="dashboard.blade.php?app=properties/index">Imóveis</a>
@@ -64,7 +70,8 @@
                 </ul>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
-            <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="{{ route('admin.logout') }}" target="_blank">Sair</a></li>
+            <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="{{ route('admin.logout') }}"
+                                                 target="_blank">Sair</a></li>
         </ul>
 
     </aside>

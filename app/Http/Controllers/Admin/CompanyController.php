@@ -28,9 +28,18 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.companies.create');
+        $users = User::orderBy('name')->get();
+
+        if(!empty($request->user)){
+            $user = User::where('id', $request->user)->first();
+        }
+
+        return view('admin.companies.create', [
+            'users' => $users,
+            'selected' => (!empty($user) ? $user : null)
+        ]);
     }
 
     /**
