@@ -36,6 +36,8 @@
                 <form action="{{ route('admin.properties.store') }}" method="post" class="app_form"
                       enctype="multipart/form-data">
 
+                    @csrf
+
                     <div class="nav_tabs_content">
                         <div id="data">
                             <div class="label_gc">
@@ -84,6 +86,7 @@
                             <label class="label">
                                 <span class="legend">Proprietário:</span>
                                 <select name="user" class="select2">
+                                    <option value="1">Pedro Leandro</option>
                                     <option value="">Nome (documento)</option>
                                 </select>
                             </label>
