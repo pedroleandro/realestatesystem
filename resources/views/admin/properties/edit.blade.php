@@ -76,15 +76,15 @@
                                     <span class="legend">Categoria:</span>
                                     <select name="category" class="select2">
                                         <option
-                                            value="residential_property" {{ (old('category') == 'residential_property' ? 'selected' : ($property->category == 'residential_property' ? 'selected' : '')) }}>
+                                            value="Imóvel Residencial" {{ (old('category') == 'Imóvel Residencial' ? 'selected' : ($property->category == 'Imóvel Residencial' ? 'selected' : '')) }}>
                                             Imóvel Residencial
                                         </option>
                                         <option
-                                            value="commercial_industrial" {{ (old('category') == 'commercial_industrial' ? 'selected' : ($property->category == 'commercial_industrial' ? 'selected' : '')) }}>
+                                            value="Comercial/Industrial" {{ (old('category') == 'Comercial/Industrial' ? 'selected' : ($property->category == 'Comercial/Industrial' ? 'selected' : '')) }}>
                                             Comercial/Industrial
                                         </option>
                                         <option
-                                            value="terrain" {{ (old('category') == 'terrain' ? 'selected' : ($property->category == 'terrain' ? 'selected' : '')) }}>
+                                            value="Terreno" {{ (old('category') == 'Terreno' ? 'selected' : ($property->category == 'Terreno' ? 'selected' : '')) }}>
                                             Terreno
                                         </option>
                                     </select>
@@ -95,43 +95,43 @@
                                     <select name="type" class="select2">
                                         <optgroup label="Imóvel Residencial">
                                             <option
-                                                value="home" {{ (old('type') == 'home' ? 'selected' : ($property->type == 'home' ? 'selected' : '')) }}>
+                                                value="Casa" {{ (old('type') == 'Casa' ? 'selected' : ($property->type == 'Casa' ? 'selected' : '')) }}>
                                                 Casa
                                             </option>
                                             <option
-                                                value="roof" {{ (old('type') == 'roof' ? 'selected' : ($property->type == 'roof' ? 'selected' : '')) }}>
+                                                value="Cobertura" {{ (old('type') == 'roof' ? 'selected' : ($property->type == 'roof' ? 'selected' : '')) }}>
                                                 Cobertura
                                             </option>
                                             <option
-                                                value="apartment" {{ (old('type') == 'apartment' ? 'selected' : ($property->type == 'apartment' ? 'selected' : '')) }}>
+                                                value="Apartamento" {{ (old('type') == 'Apartamento' ? 'selected' : ($property->type == 'Apartamento' ? 'selected' : '')) }}>
                                                 Apartamento
                                             </option>
                                             <option
-                                                value="studio" {{ (old('type') == 'studio' ? 'selected' : ($property->type == 'studio' ? 'selected' : '')) }}>
+                                                value="Studio" {{ (old('type') == 'Studio' ? 'selected' : ($property->type == 'Studio' ? 'selected' : '')) }}>
                                                 Studio
                                             </option>
                                             <option
-                                                value="kitnet" {{ (old('type') == 'kitnet' ? 'selected' : ($property->type == 'kitnet' ? 'selected' : '')) }}>
+                                                value="Kitnet" {{ (old('type') == 'Kitnet' ? 'selected' : ($property->type == 'Kitnet' ? 'selected' : '')) }}>
                                                 Kitnet
                                             </option>
                                         </optgroup>
                                         <optgroup label="Comercial/Industrial">
                                             <option
-                                                value="commercial_room" {{ (old('type') == 'commercial_room' ? 'selected' : ($property->type == 'commercial_room' ? 'selected' : '')) }}>
+                                                value=" Sala Comercial" {{ (old('type') == ' Sala Comercial' ? 'selected' : ($property->type == ' Sala Comercial' ? 'selected' : '')) }}>
                                                 Sala Comercial
                                             </option>
                                             <option
-                                                value="deposit_shed" {{ (old('type') == 'deposit_shed' ? 'selected' : ($property->type == 'deposit_shed' ? 'selected' : '')) }}>
+                                                value="Depósito/Galpão" {{ (old('type') == 'Depósito/Galpão' ? 'selected' : ($property->type == 'Depósito/Galpão' ? 'selected' : '')) }}>
                                                 Depósito/Galpão
                                             </option>
                                             <option
-                                                value="commercial_point" {{ (old('type') == 'commercial_point' ? 'selected' : ($property->type == 'commercial_point' ? 'selected' : '')) }}>
+                                                value="Ponto Comercial" {{ (old('type') == 'Ponto Comercial' ? 'selected' : ($property->type == 'Ponto Comercial' ? 'selected' : '')) }}>
                                                 Ponto Comercial
                                             </option>
                                         </optgroup>
                                         <optgroup label="Terreno">
                                             <option
-                                                value="terrain" {{ (old('type') == 'terrain' ? 'selected' : ($property->type == 'terrain' ? 'selected' : '')) }}>
+                                                value="Terreno" {{ (old('type') == 'Terreno' ? 'selected' : ($property->type == 'Terreno' ? 'selected' : '')) }}>
                                                 Terreno
                                             </option>
                                         </optgroup>
@@ -142,8 +142,10 @@
                             <label class="label">
                                 <span class="legend">Proprietário:</span>
                                 <select name="user" class="select2">
-                                    <option value="1">Pedro Leandro</option>
-                                    <option value="">Nome (documento)</option>
+                                    <option value="">Selecione o proprietário</option>
+                                    @foreach($users as $user)
+                                        <option value="{{ $user->id }}" {{ ($user->id === $property->user ? 'selected' : '') }}>{{ $user->name }} ({{ $user->document }})</option>
+                                    @endforeach
                                 </select>
                             </label>
 

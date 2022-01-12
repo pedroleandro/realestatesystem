@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use LaraDev\Http\Controllers\Controller;
 use LaraDev\Http\Requests\Admin\PropertyRequest;
 use LaraDev\Property;
+use LaraDev\User;
 
 class PropertyController extends Controller
 {
@@ -16,7 +17,11 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('admin.properties.index');
+        $properties = Property::orderBy('id', 'DESC')->get();
+
+        return view('admin.properties.index', [
+            'properties' => $properties
+        ]);
     }
 
     /**
@@ -26,7 +31,11 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('admin.properties.create');
+        $users = User::orderBy('name')->get();
+
+        return view('admin.properties.create', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -64,9 +73,11 @@ class PropertyController extends Controller
     public function edit($id)
     {
         $property = Property::where('id', $id)->first();
+        $users = User::orderBy('name')->get();
 
         return view('admin.properties.edit', [
-            'property' => $property
+            'property' => $property,
+            'users' => $users
         ]);
     }
 
