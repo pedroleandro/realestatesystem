@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use LaraDev\Http\Controllers\Controller;
 use LaraDev\Http\Requests\Admin\PropertyRequest;
 use LaraDev\Property;
+use LaraDev\PropertyImage;
 use LaraDev\User;
 
 class PropertyController extends Controller
@@ -47,6 +48,18 @@ class PropertyController extends Controller
     public function store(PropertyRequest $request)
     {
         $newProperty = Property::create($request->all());
+
+        if ($request->allFiles()) {
+
+            foreach ($request->allFiles()['files'] as $image) {
+                $newImageForThisNewProperty = new PropertyImage();
+                $newImageForThisNewProperty->property = $newProperty->id;
+                $newImageForThisNewProperty->path = $image->storeAs('properties/' . $newProperty->id, str_slug($request->title) . '-' . str_replace('.', '', microtime(true)) . '.' . $image->extension());
+                $newImageForThisNewProperty->save();
+                unset($newImageForThisNewProperty);
+            }
+
+        }
 
         return redirect()->route('admin.properties.edit', [
             'property' => $newProperty->id
@@ -115,6 +128,18 @@ class PropertyController extends Controller
 
         if (!$property->save()) {
             return redirect()->back()->withInput()->withErrors();
+        }
+
+        if ($request->allFiles()) {
+
+            foreach ($request->allFiles()['files'] as $image) {
+                $newImageForThisProperty = new PropertyImage();
+                $newImageForThisProperty->property = $property->id;
+                $newImageForThisProperty->path = $image->storeAs('properties/' . $property->id, str_slug($request->title) . '-' . str_replace('.', '', microtime(true)) . '.' . $image->extension());
+                $newImageForThisProperty->save();
+                unset($newImageForThisProperty);
+            }
+
         }
 
         return redirect()->route('admin.properties.edit', [
