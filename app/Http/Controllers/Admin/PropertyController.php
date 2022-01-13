@@ -158,4 +158,14 @@ class PropertyController extends Controller
     {
         //
     }
+
+    public function imageSetCover()
+    {
+        return response()->json('ok');
+    }
+
+    public function imageRemove()
+    {
+        return response()->json('ok, mas eu removi');
+    }
 }
