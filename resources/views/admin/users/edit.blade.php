@@ -487,7 +487,7 @@
                                                 @foreach($user->properties()->get() as $property)
                                                     <div class="realty_list_item mb-1">
                                                         <div class="realty_list_item_actions_stats">
-                                                            <img src="{{ url(asset('backend/assets/images/realty.jpeg')) }}" alt="">
+                                                            <img src="{{ $property->cover() }}" alt="">
                                                             <ul>
                                                                 <li>Venda: R$ {{ $property->sale_price }}</li>
                                                                 <li>Aluguel: R$ {{ $property->rent_price }}</li>
@@ -495,7 +495,8 @@
                                                         </div>
 
                                                         <div class="realty_list_item_content">
-                                                            <h4>#{{ $property->id }} {{ $property->category }} - {{ $property->type }}</h4>
+                                                            <h4>#{{ $property->id }} {{ $property->category }}
+                                                                - {{ $property->type }}</h4>
 
                                                             <div class="realty_list_item_card">
                                                                 <div class="realty_list_item_card_image">
@@ -552,7 +553,8 @@
                                                             <div>
                                                                 <a href="" class="btn btn-blue icon-eye">Visualizar
                                                                     Imóvel</a>
-                                                                <a href="{{ route('admin.properties.edit', ['property' => $property->id]) }}" class="btn btn-green icon-pencil-square-o">Editar
+                                                                <a href="{{ route('admin.properties.edit', ['property' => $property->id]) }}"
+                                                                   class="btn btn-green icon-pencil-square-o">Editar
                                                                     Imóvel</a>
                                                             </div>
                                                         </div>

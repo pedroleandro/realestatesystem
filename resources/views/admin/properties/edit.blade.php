@@ -436,10 +436,12 @@
                                     <div class="property_image_item">
                                         <img src="{{ $image->url_cropped }}" alt="">
                                         <div class="property_image_actions">
-                                            <a href="javascript:void(0)" class="btn btn-small icon-check icon-notext image-set-cover"
-                                               data-action="{{ route('admin.properties.imageSetCover') }}"></a>
                                             <a href="javascript:void(0)"
-                                               class="btn btn-red btn-small icon-times icon-notext image-remove" data-action="{{ route('admin.properties.imageRemove') }}"></a>
+                                               class="btn {{ ($image->cover == true ? 'btn-green' : '') }} btn-small icon-check icon-notext image-set-cover"
+                                               data-action="{{ route('admin.properties.imageSetCover', ['image' => $image->id]) }}"></a>
+                                            <a href="javascript:void(0)"
+                                               class="btn btn-red btn-small icon-times icon-notext image-remove"
+                                               data-action="{{ route('admin.properties.imageRemove', ['image' => $image->id]) }}"></a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -486,16 +488,19 @@
                 });
             });
 
-            $('.image-set-cover').click(function (event){
+            $('.image-set-cover').click(function (event) {
                 event.preventDefault();
 
                 var button = $(this)
-                $.post(button.data('action'), {}, function (response){
-                    alert(response);
+                $.post(button.data('action'), {}, function (response) {
+                    if (response.success === true) {
+                        $('.property_image').find('a.btn-green').removeClass('btn-green');
+                        button.addClass('btn-green');
+                    }
                 }, 'json');
             });
 
-            $('.image-remove').click(function (event){
+            $('.image-remove').click(function (event) {
                 event.preventDefault();
 
                 var button = $(this)
@@ -503,8 +508,12 @@
                     url: button.data('action'),
                     type: 'DELETE',
                     dataType: 'json',
-                    success: function (response){
-                        alert(response);
+                    success: function (response) {
+                        if (response.success === true) {
+                            button.closest('.property_image_item').fadeOut(function () {
+                                $(this).remove();
+                            });
+                        }
                     }
                 });
             });
