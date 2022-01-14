@@ -99,7 +99,7 @@
                                     <div class="label_g2">
                                         <label class="label">
                                             <span class="legend">Adquirente:</span>
-                                            <select name="acquirer" class="select2">
+                                            <select name="acquirer" class="select2" data-action="{{ route('admin.contracts.getDataAcquirer') }}">
                                                 <option value="" selected>Informe um Cliente</option>
 
                                                 @foreach($lessees as $lessee)
@@ -281,7 +281,7 @@
 
                     $('select[name="owner_company"]').html('');
 
-                    if (response.companies.length) {
+                    if (response.companies != null && response.companies.length) {
 
                         $('select[name="owner_company"]').append($('<option>', {
                             value: 0,
@@ -299,6 +299,62 @@
 
                     } else {
                         $('select[name="owner_company"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informado'
+                        }));
+                    }
+
+                }, 'json');
+
+            });
+
+            $('select[name="acquirer"]').change(function () {
+                var acquirer = $(this)
+
+                $.post(acquirer.data('action'), {user: acquirer.val()}, function (response) {
+
+                    $('select[name="acquirer_spouse"]').html('');
+
+                    // Spouse
+
+                    if (response.spouse) {
+                        $('select[name="acquirer_spouse"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informar'
+                        }));
+                        $('select[name="acquirer_spouse"]').append($('<option>', {
+                            value: 1,
+                            text: response.spouse.spouse_name + '(' + response.spouse.spouse_document + ')'
+                        }));
+                    } else {
+                        $('select[name="acquirer_spouse"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informado'
+                        }));
+                    }
+
+                    // Companies
+
+                    $('select[name="acquirer_company"]').html('');
+
+                    if (response.companies != null && response.companies.length) {
+
+                        $('select[name="acquirer_company"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informar'
+                        }));
+
+                        $.each(response.companies, function (key, value) {
+
+                            $('select[name="acquirer_company"]').append($('<option>', {
+                                value: value.id,
+                                text: value.alias_name + '(' + value.document_company + ')'
+                            }));
+
+                        });
+
+                    } else {
+                        $('select[name="acquirer_company"]').append($('<option>', {
                             value: 0,
                             text: 'Não informado'
                         }));

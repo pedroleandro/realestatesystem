@@ -101,6 +101,7 @@ class ContractController extends Controller
 
         if (empty($lessor)) {
             $spouse = null;
+            $companies = null;
         } else {
             $civilStatusSpouseRequired = [
                 'married',
@@ -115,16 +116,58 @@ class ContractController extends Controller
             } else {
                 $spouse = null;
             }
+
+            $companies = $lessor->companies()->get([
+                'id',
+                'alias_name',
+                'document_company'
+            ]);
         }
 
-        $companies = $lessor->companies()->get([
-            'id',
-            'alias_name',
-            'document_company'
-        ]);
 
         $json['spouse'] = $spouse;
-        $json['companies'] = $companies;
+        $json['companies'] = (!empty($companies) && $companies->count() ? $companies : null);
+
+        return response()->json($json);
+    }
+
+    public function getDataAcquirer(Request $request)
+    {
+        $lessee = User::where('id', $request->user)->first([
+            'id',
+            'civil_status',
+            'spouse_name',
+            'spouse_document'
+        ]);
+
+        if (empty($lessee)) {
+            $spouse = null;
+            $companies = null;
+        } else {
+            $civilStatusSpouseRequired = [
+                'married',
+                'separated'
+            ];
+
+            if (in_array($lessee->civil_status, $civilStatusSpouseRequired)) {
+                $spouse = [
+                    'spouse_name' => $lessee->spouse_name,
+                    'spouse_document' => $lessee->spouse_document,
+                ];
+            } else {
+                $spouse = null;
+            }
+
+            $companies = $lessee->companies()->get([
+                'id',
+                'alias_name',
+                'document_company'
+            ]);
+        }
+
+
+        $json['spouse'] = $spouse;
+        $json['companies'] = (!empty($companies) && $companies->count() ? $companies : null);
 
         return response()->json($json);
     }
