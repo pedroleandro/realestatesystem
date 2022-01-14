@@ -34,7 +34,9 @@
 
                 <div class="nav_tabs_content">
                     <div id="parts">
-                        <form action="" method="post" class="app_form">
+                        <form action="{{ route('admin.contracts.store') }}" method="post" class="app_form">
+
+                            @csrf
 
                             <div class="label_gc">
                                 <span class="legend">Finalidade:</span>
@@ -57,8 +59,16 @@
                                     <div class="label_g2">
                                         <label class="label">
                                             <span class="legend">Proprietário:</span>
-                                            <select class="select2" name="owner">
+                                            <select class="select2" name="owner"
+                                                    data-action="{{ route('admin.contracts.getDataOwner') }}">
                                                 <option value="0">Informe um Cliente</option>
+
+                                                @foreach($lessors as $lessor)
+                                                    <option value="{{ $lessor->id }}">{{ $lessor->name }}
+                                                        ({{ $lessor->document }})
+                                                    </option>
+                                                @endforeach
+
                                             </select>
                                         </label>
 
@@ -91,6 +101,13 @@
                                             <span class="legend">Adquirente:</span>
                                             <select name="acquirer" class="select2">
                                                 <option value="" selected>Informe um Cliente</option>
+
+                                                @foreach($lessees as $lessee)
+                                                    <option value="{{ $lessee->id }}">{{ $lessee->name }}
+                                                        ({{ $lessee->document }})
+                                                    </option>
+                                                @endforeach
+
                                             </select>
                                         </label>
 
@@ -222,4 +239,74 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+
+        $(function () {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            $('select[name="owner"]').change(function () {
+                var owner = $(this)
+
+                $.post(owner.data('action'), {user: owner.val()}, function (response) {
+
+                    $('select[name="owner_spouse"]').html('');
+
+                    // Spouse
+
+                    if (response.spouse) {
+                        $('select[name="owner_spouse"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informar'
+                        }));
+                        $('select[name="owner_spouse"]').append($('<option>', {
+                            value: 1,
+                            text: response.spouse.spouse_name + '(' + response.spouse.spouse_document + ')'
+                        }));
+                    } else {
+                        $('select[name="owner_spouse"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informado'
+                        }));
+                    }
+
+                    // Companies
+
+                    $('select[name="owner_company"]').html('');
+
+                    if (response.companies.length) {
+
+                        $('select[name="owner_company"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informar'
+                        }));
+
+                        $.each(response.companies, function (key, value) {
+
+                            $('select[name="owner_company"]').append($('<option>', {
+                                value: value.id,
+                                text: value.alias_name + '(' + value.document_company + ')'
+                            }));
+
+                        });
+
+                    } else {
+                        $('select[name="owner_company"]').append($('<option>', {
+                            value: 0,
+                            text: 'Não informado'
+                        }));
+                    }
+
+                }, 'json');
+
+            });
+        });
+    </script>
 @endsection
