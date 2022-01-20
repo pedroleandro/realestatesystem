@@ -18,10 +18,10 @@ class CreateContractsTable extends Migration
             $table->boolean('sale');
             $table->boolean('rent');
             $table->unsignedInteger('owner');
-            $table->boolean('owner_spose')->nullable();
+            $table->boolean('owner_spouse')->nullable();
             $table->unsignedInteger('owner_company')->nullable();
             $table->unsignedInteger('acquirer');
-            $table->boolean('acquirer_spose')->nullable();
+            $table->boolean('acquirer_spouse')->nullable();
             $table->unsignedInteger('acquirer_company')->nullable();
             $table->unsignedInteger('property');
             $table->double('price');

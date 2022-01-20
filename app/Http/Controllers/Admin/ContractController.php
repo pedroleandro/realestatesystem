@@ -3,6 +3,7 @@
 namespace LaraDev\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use LaraDev\Contract;
 use LaraDev\Http\Controllers\Controller;
 use LaraDev\Http\Requests\Admin\ContractRequest;
 use LaraDev\Property;
@@ -40,13 +41,17 @@ class ContractController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ContractRequest $request)
     {
+        $newContract = Contract::create($request->all());
 
-
-        var_dump($request->all());
+        return redirect()->route('admin.contracts.edit', ['contract' => $newContract->id])
+            ->with([
+                'color' => 'green',
+                'message' => 'Contrato cadastrado com sucesso!'
+            ]);
     }
 
     /**
@@ -68,7 +73,16 @@ class ContractController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.contracts.edit');
+        $contract = Contract::where('id', $id)->first();
+
+        $lessors = User::lessors();
+        $lessees = User::lessees();
+
+        return view('admin.contracts.edit', [
+            'contract' => $contract,
+            'lessors' => $lessors,
+            'lessees' => $lessees
+        ]);
     }
 
     /**
@@ -76,11 +90,19 @@ class ContractController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ContractRequest $request, $id)
     {
-        //
+        $contract = Contract::where('id', $id)->first();
+        $contract->fill($request->all());
+        $contract->save();
+
+        return redirect()->route('admin.contracts.edit', ['contract' => $contract->id])
+            ->with([
+                'color' => 'green',
+                'message' => 'Contrato atualizado com sucesso!'
+            ]);
     }
 
     /**
