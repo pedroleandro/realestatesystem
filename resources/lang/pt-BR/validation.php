@@ -214,7 +214,7 @@ return [
         'social_name' => 'razão social',
         'alias_name' => 'nome fantasia',
         'document_company' => 'CNPJ',
-        'document_company_secondary' => 'inscrição estadual'
+        'document_company_secondary' => 'inscrição estadual',
 
     ],
 
