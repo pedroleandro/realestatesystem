@@ -47,6 +47,21 @@ class Contract extends Model
         return $this->hasOne(Company::class, 'id', 'acquirer_company');
     }
 
+    public function scopePending($query)
+    {
+        return $query->where('status', 'pending')->get();
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active')->get();
+    }
+
+    public function scopeCanceled($query)
+    {
+        return $query->where('status', 'canceled')->get();
+    }
+
     public function propertyObject()
     {
         return $this->hasOne(Property::class, 'id', 'property');

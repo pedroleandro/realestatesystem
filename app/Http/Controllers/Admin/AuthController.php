@@ -4,7 +4,9 @@ namespace LaraDev\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use LaraDev\Contract;
 use LaraDev\Http\Controllers\Controller;
+use LaraDev\Property;
 use LaraDev\User;
 
 class AuthController extends Controller
@@ -20,7 +22,39 @@ class AuthController extends Controller
 
     public function home()
     {
-        return view('admin.dashboard');
+        $lessors = User::lessors()->count();
+        $lessees = User::lessees()->count();
+
+        $team = User::where('admin', 1)->count();
+
+        $propertiesAvailables = Property::available()->count();
+        $propertiesUnavailables = Property::unavailable()->count();
+        $propertiesTotal = Property::all()->count();
+
+        $contractsPendings = Contract::pending()->count();
+        $contractsActives = Contract::active()->count();
+        $contractsCanceleds = Contract::canceled()->count();
+        $contractsTotal = Contract::all()->count();
+
+        $contracts = Contract::orderBy('id', 'DESC')->limit(10)->get();
+
+        $properties = Property::orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('admin.dashboard', [
+            'lessors' => $lessors,
+            'lessees' => $lessees,
+            'team' => $team,
+            'propertiesAvailables' => $propertiesAvailables,
+            'propertiesUnavailables' => $propertiesUnavailables,
+            'propertiesTotal' => $propertiesTotal,
+            'contractsPendings' => $contractsPendings,
+            'contractsActives' => $contractsActives,
+            'contractsCanceleds' => $contractsCanceleds,
+            'contractsTotal' => $contractsTotal,
+            'contracts' => $contracts,
+            'properties' => $properties
+
+        ]);
     }
 
     public function login(Request $request)
