@@ -29,11 +29,21 @@
 
 <div class="ajax_response"></div>
 
+@php
+
+    if(\Illuminate\Support\Facades\File::exists(public_path() . '/storage/' . \Illuminate\Support\Facades\Auth::user()->cover)){
+        $cover = \Illuminate\Support\Facades\Auth::user()->url_cover;
+    }else{
+        $cover = url(asset('backend/assets/images/avatar.jpg'));
+    }
+
+@endphp
+
 <div class="dash">
     <aside class="dash_sidebar">
         <article class="dash_sidebar_user">
             <img class="dash_sidebar_user_thumb"
-                 src="{{ url(asset('backend/assets/images/avatar.jpg')) }}" alt="" title=""/>
+                 src="{{ $cover }}" alt="" title=""/>
 
             <h1 class="dash_sidebar_user_name">
                 <a href="">Gustavo Web</a>
@@ -66,10 +76,13 @@
                             href="{{ route('admin.properties.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
-            <li class="dash_sidebar_nav_item {{ isActive('admin.contracts') }}"><a class="icon-file-text" href="{{ route('admin.contracts.index') }}">Contratos</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.contracts') }}"><a class="icon-file-text"
+                                                                                   href="{{ route('admin.contracts.index') }}">Contratos</a>
                 <ul class="dash_sidebar_nav_submenu">
-                    <li class="{{ isActive('admin.contracts.index') }}"><a href="{{ route('admin.contracts.index') }}">Ver Todos</a></li>
-                    <li class="{{ isActive('admin.contracts.create') }}"><a href="{{ route('admin.contracts.create') }}">Criar Novo</a></li>
+                    <li class="{{ isActive('admin.contracts.index') }}"><a href="{{ route('admin.contracts.index') }}">Ver
+                            Todos</a></li>
+                    <li class="{{ isActive('admin.contracts.create') }}"><a
+                            href="{{ route('admin.contracts.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
