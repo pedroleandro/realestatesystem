@@ -4,6 +4,7 @@ namespace LaraDev\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use LaraDev\Http\Controllers\Controller;
 use LaraDev\Http\Requests\Admin\PropertyRequest;
 use LaraDev\Property;
@@ -50,6 +51,15 @@ class PropertyController extends Controller
     public function store(PropertyRequest $request)
     {
         $newProperty = Property::create($request->all());
+
+        $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
+
+        if($validator->fails() === true){
+            return redirect()->back()->withInput()->with([
+                'color' => 'orange',
+                'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
+            ]);
+        }
 
         if ($request->allFiles()) {
 
@@ -130,6 +140,15 @@ class PropertyController extends Controller
 
         if (!$property->save()) {
             return redirect()->back()->withInput()->withErrors();
+        }
+
+        $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
+
+        if($validator->fails() === true){
+            return redirect()->back()->withInput()->with([
+                'color' => 'orange',
+                'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
+            ]);
         }
 
         if ($request->allFiles()) {
