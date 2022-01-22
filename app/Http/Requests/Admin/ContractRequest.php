@@ -33,7 +33,7 @@ class ContractRequest extends FormRequest
             'due_date' => 'required|integer|min:1|max:28',
             'deadline' => 'required|integer|min:12|max:48',
             'start_at' =>  'required',
-            'rent' => 'different:sale'
+//            'rent' => 'different:sale'
         ];
     }
 }
