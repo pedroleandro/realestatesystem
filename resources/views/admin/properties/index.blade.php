@@ -33,8 +33,13 @@
                                 <div class="realty_list_item_actions_stats">
                                     <img src="{{ $property->cover() }}" alt="">
                                     <ul>
-                                        <li>Venda: R$ {{ $property->sale_price }}</li>
-                                        <li>Aluguel: R$ {{ $property->rent_price }}</li>
+                                        @if($property->sale == true && !empty($property->sale_price))
+                                            <li>Venda: R$ {{ $property->sale_price }}</li>
+                                        @endif
+
+                                        @if($property->rent == true && !empty($property->rent_price))
+                                            <li>Aluguel: R$ {{ $property->rent_price }}</li>
+                                        @endif
                                     </ul>
                                 </div>
 
@@ -96,7 +101,8 @@
                                     <div>
                                         <a href="" class="btn btn-blue icon-eye">Visualizar
                                             Imóvel</a>
-                                        <a href="{{ route('admin.properties.edit', ['property' => $property->id]) }}" class="btn btn-green icon-pencil-square-o">Editar
+                                        <a href="{{ route('admin.properties.edit', ['property' => $property->id]) }}"
+                                           class="btn btn-green icon-pencil-square-o">Editar
                                             Imóvel</a>
                                     </div>
                                 </div>
