@@ -87,7 +87,8 @@
                                         <optgroup label="Imóvel Residencial">
                                             <option value="Casa" {{ (old('type') == 'Casa' ? 'selected' : '') }}>Casa
                                             </option>
-                                            <option value="Cobertura" {{ (old('type') == 'Cobertura' ? 'selected' : '') }}>
+                                            <option
+                                                value="Cobertura" {{ (old('type') == 'Cobertura' ? 'selected' : '') }}>
                                                 Cobertura
                                             </option>
                                             <option
@@ -137,6 +138,18 @@
                                     @endforeach
                                 </select>
                             </label>
+
+                            <div class="label_g2">
+                                <label class="label">
+                                    <span class="legend">Status:</span>
+                                    <select name="status" id="" class="select2">
+                                        <option value="1" {{ (old('status') == '1' ? 'selected' : '') }}>Disponível
+                                        </option>
+                                        <option value="0" {{ (old('status') == '0' ? 'selected' : '') }}>Indisponível
+                                        </option>
+                                    </select>
+                                </label>
+                            </div>
 
                             <div class="app_collapse">
                                 <div class="app_collapse_header mt-2 collapse">

@@ -50,7 +50,8 @@ class Property extends Model
         'furnished',
         'pool',
         'steam_room',
-        'view_of_the_sea'
+        'view_of_the_sea',
+        'status'
     ];
 
     public function user()
@@ -88,6 +89,16 @@ class Property extends Model
     public function setRentAttribute($value)
     {
         $this->attributes['rent'] = ($value == true || $value == 'on') ? 1 : 0;
+    }
+
+    public function setStatusAttribute($value)
+    {
+        $this->attributes['status'] = ($value == '1' ? 1 : 0);
+    }
+
+    public function getStatusAttribute($value)
+    {
+        return ($value == 1 ? true : false);
     }
 
     public function setSalePriceAttribute($value)

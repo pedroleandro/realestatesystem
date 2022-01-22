@@ -102,6 +102,18 @@ class ContractController extends Controller
         $contract->fill($request->all());
         $contract->save();
 
+        if ($request->property) {
+            $property = Property::where('id', $request->property)->first();
+
+            if ($request->status === 'active') {
+                $property->status = 0;
+                $property->save();
+            }else{
+                $property->status = 1;
+                $property->save();
+            }
+        }
+
         return redirect()->route('admin.contracts.edit', ['contract' => $contract->id])
             ->with([
                 'color' => 'green',
