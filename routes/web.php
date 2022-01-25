@@ -13,6 +13,25 @@ use \Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['namespace' => 'Web', 'as' => 'web.'], function () {
+
+    /** Página inicial */
+    Route::get('/', 'WebController@home')->name('home');
+
+    /** Página de contato */
+    Route::get('/contato', 'WebController@contact')->name('contact');
+
+    /** Página de locação */
+    Route::get('/quero-alugar', 'WebController@rent')->name('rent');
+
+    /** Página de compra */
+    Route::get('/quero-comprar', 'WebController@sale')->name('sale');
+
+    /** Página de filtro */
+    Route::get('/filtro', 'WebController@filter')->name('filter');
+
+});
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
 
     /** Formulário de Login */
