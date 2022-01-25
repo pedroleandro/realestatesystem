@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Imobiliária</title>
 
-    <link rel="stylesheet" href="assets/css/bootstrap_person.css">
-    <link rel="stylesheet" href="assets/libs/lightbox/ekko-lightbox.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="{{ url(asset('frontend/assets/css/bootstrap.css')) }}">
+    <link rel="stylesheet" href="{{ url(asset('frontend/assets/libs/libs.css')) }}">
+    <link rel="stylesheet" href="{{ url(asset('frontend/assets/css/app.css')) }}">
 
     <link rel="icon" type="image/png" href="assets/images/favicon.png"/>
 </head>
@@ -136,12 +136,11 @@
     </div>
 </div>
 
-<script src="assets/js/jquery-3.3.1.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/libs/lightbox/ekko-lightbox.min.js"></script>
-<script src="node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-<script src="node_modules/bootstrap-select/dist/js/i18n/defaults-pt_BR.min.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="{{ url(asset('frontend/assets/js/jquery.js')) }}"></script>
+<script src="{{ url(asset('frontend/assets/js/bootstrap.js')) }}"></script>
+<script src="{{ url(asset('frontend/assets/libs/libs.js')) }}"></script>
+<script src="{{ url(asset('frontend/assets/js/libs.js')) }}"></script>
+<script src="{{ url(asset('frontend/assets/js/scripts.js')) }}"></script>
 
 <script>
 
