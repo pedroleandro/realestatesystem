@@ -1,5 +1,11 @@
 $(function () {
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
     $('body').on('click', '[data-toggle="lightbox"]', function (event) {
         event.preventDefault();
         $(this).ekkoLightbox();
@@ -19,5 +25,17 @@ $(function () {
 
         box.slideToggle();
     });
-    
+
+    $('body').on('change', 'select[name*="filter_"]', function () {
+
+        var search = $(this)
+
+        $.post(search.data('action'), {search: search.val()}, function (response) {
+
+            console.log(response);
+
+        }, 'json');
+
+    });
+
 });

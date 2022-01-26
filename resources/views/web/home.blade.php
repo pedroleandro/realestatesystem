@@ -22,8 +22,9 @@
                 <form action="" class="form-inline w-100">
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="search" class="mb-2"><b>Comprar ou Alugar?</b></label>
-                        <select class="selectpicker" id="search" name="search" title="Escolha...">
-                            <option value="buy">Comprar</option>
+                        <select class="selectpicker" id="search" name="filter_search" title="Escolha..."
+                                data-action="{{ route('component.main-filter.search') }}">
+                            <option value="sale">Comprar</option>
                             <option value="rent">Alugar</option>
                         </select>
                     </div>
