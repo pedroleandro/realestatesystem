@@ -96,7 +96,7 @@
 </article>
 
 <section class="main_footer bg-light"
-         style="background: url(frontend/assets/images/footer.png) repeat-x bottom center; background-size: 10%;">
+         style="background: url('frontend/assets/images/footer.png') repeat-x bottom center; background-size: 10%;">
     <div class="container pt-5" style="padding-bottom: 120px;">
 
         <div class="row d-flex justify-content-around text-muted">
