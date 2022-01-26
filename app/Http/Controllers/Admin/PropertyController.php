@@ -52,9 +52,11 @@ class PropertyController extends Controller
     {
         $newProperty = Property::create($request->all());
 
+        $newProperty->setSlug();
+
         $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
 
-        if($validator->fails() === true){
+        if ($validator->fails() === true) {
             return redirect()->back()->withInput()->with([
                 'color' => 'orange',
                 'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
@@ -142,9 +144,11 @@ class PropertyController extends Controller
             return redirect()->back()->withInput()->withErrors();
         }
 
+        $property->setSlug();
+
         $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
 
-        if($validator->fails() === true){
+        if ($validator->fails() === true) {
             return redirect()->back()->withInput()->with([
                 'color' => 'orange',
                 'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
