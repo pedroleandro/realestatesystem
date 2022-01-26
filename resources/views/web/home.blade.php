@@ -23,14 +23,14 @@
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="search" class="mb-2"><b>Comprar ou Alugar?</b></label>
                         <select class="selectpicker" id="search" name="filter_search" title="Escolha..."
-                                data-action="{{ route('component.main-filter.search') }}">
+                                data-index="1" data-action="{{ route('component.main-filter.search') }}">
                             <option value="sale">Comprar</option>
                             <option value="rent">Alugar</option>
                         </select>
                     </div>
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="category" class="mb-2"><b>O que você quer?</b></label>
-                        <select class="selectpicker" id="category" name="category" title="Escolha...">
+                        <select class="selectpicker" id="category" name="filter_category" title="Escolha..." data-index="2">
                             <option value="">Imóvel Residencial</option>
                             <option value="">Comercial/Industrial</option>
                             <option value="">Terreno</option>
@@ -39,7 +39,7 @@
 
                     <div class="form-group col-12 col-sm-6 mt-sm-2 mt col-lg-3 mt-lg-0">
                         <label for="type" class="mb-2 d-block"><b>Qual o tipo do imóvel?</b></label>
-                        <select class="selectpicker input-large" id="type" name="type" multiple data-actions-box="true">
+                        <select class="selectpicker input-large" id="type" name="filter_type" multiple data-actions-box="true" data-index="3">
                             <option value="">Casa</option>
                             <option value="">Apartamento</option>
                             <option value="">Terreno</option>
@@ -64,8 +64,8 @@
                     </div>
                     <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                         <label for="search_locale" class="mb-2"><b>Onde você quer?</b></label>
-                        <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha..." multiple
-                                data-actions-box="true">
+                        <select class="selectpicker" name="filter_neighborhood" id="bedrooms" title="Escolha..." multiple
+                                data-actions-box="true" data-index="4">
                             <option value="">Campeche</option>
                             <option value="">Rio Tavares</option>
                             <option value="">Morro das Pedras</option>
@@ -93,7 +93,7 @@
                         <div class="row">
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Quartos</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select class="selectpicker" name="filter_bedrooms" id="bedrooms" title="Escolha..." data-index="5">
                                     <option value="">1</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -103,7 +103,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Suítes</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select class="selectpicker" name="filter_suites" id="bedrooms" title="Escolha..." data-index="6">
                                     <option value="">0</option>
                                     <option value="">1</option>
                                     <option value="">2</option>
@@ -114,7 +114,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Banheiros</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select class="selectpicker" name="filter_bathrooms" id="bedrooms" title="Escolha..." data-index="7">
                                     <option value="">1</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -124,7 +124,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Garagem</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select class="selectpicker" name="filter_garage" id="bedrooms" title="Escolha..." data-index="8">
                                     <option value="">0</option>
                                     <option value="">1</option>
                                     <option value="">2</option>
@@ -137,7 +137,7 @@
                         <div class="row mt-3">
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-6 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Preço Base</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select class="selectpicker" name="filter_base" id="bedrooms" title="Escolha..." data-index="9">
                                     <option value="">A partir de R$ 100.000,00</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -147,7 +147,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-6 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Preço Limite</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select class="selectpicker" name="filter_limit" id="bedrooms" title="Escolha..." data-index="10">
                                     <option value="">Até R$ 1.000.000,00</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
