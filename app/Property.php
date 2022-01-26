@@ -87,12 +87,22 @@ class Property extends Model
 
     public function scopeAvailable($query)
     {
-        return $query->where('status', 1)->get();
+        return $query->where('status', 1);
     }
 
     public function scopeUnavailable($query)
     {
-        return $query->where('status', 0)->get();
+        return $query->where('status', 0);
+    }
+
+    public function scopeSale($query)
+    {
+        return $query->where('sale', 1);
+    }
+
+    public function scopeRent($query)
+    {
+        return $query->where('rent', 1);
     }
 
     public function setSaleAttribute($value)
