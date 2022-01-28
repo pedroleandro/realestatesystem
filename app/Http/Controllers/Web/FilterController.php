@@ -385,6 +385,21 @@ class FilterController extends Controller
             ->get(explode(',', $field));
     }
 
+    public function clearAllData()
+    {
+        session()->remove('sale');
+        session()->remove('rent');
+        session()->remove('category');
+        session()->remove('type');
+        session()->remove('neighborhood');
+        session()->remove('bedrooms');
+        session()->remove('suites');
+        session()->remove('bathrooms');
+        session()->remove('garage');
+        session()->remove('price_base');
+        session()->remove('price_limit');
+    }
+
     private function setResponse(string $status, array $data = null, string $message = null)
     {
         return [

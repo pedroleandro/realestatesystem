@@ -285,7 +285,7 @@
                                     <p class="main_properties_item_type">{{ $property->type }}
                                         - {{ $property->neighborhod }} <i
                                             class="icon-location-arrow icon-notext"></i></p>
-                                    <p class="main_properties_price text-front">R$ {{ $property->rent_price }}</p>
+                                    <p class="main_properties_price text-front">R$ {{ $property->rent_price }}/mês</p>
                                     <a href="{{ route('web.rentProperty', ['property' => $property->slug]) }}"
                                        class="btn btn-front btn-block">Ver Imóvel</a>
                                 </div>
