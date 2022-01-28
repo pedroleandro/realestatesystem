@@ -54,13 +54,15 @@ class PropertyController extends Controller
 
         $newProperty->setSlug();
 
-        $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
+        if (!empty($request->only('files')['files'])) {
+            $validator = Validator::make($request->only('files')['files'], ['files.*' => 'image']);
 
-        if ($validator->fails() === true) {
-            return redirect()->back()->withInput()->with([
-                'color' => 'orange',
-                'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
-            ]);
+            if ($validator->fails() === true) {
+                return redirect()->back()->withInput()->with([
+                    'color' => 'orange',
+                    'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
+                ]);
+            }
         }
 
         if ($request->allFiles()) {
@@ -146,13 +148,15 @@ class PropertyController extends Controller
 
         $property->setSlug();
 
-        $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
+        if (!empty($request->only('files')['files'])) {
+            $validator = Validator::make($request->only('files')['files'], ['files.*' => 'image']);
 
-        if ($validator->fails() === true) {
-            return redirect()->back()->withInput()->with([
-                'color' => 'orange',
-                'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
-            ]);
+            if ($validator->fails() === true) {
+                return redirect()->back()->withInput()->with([
+                    'color' => 'orange',
+                    'message' => 'Todas as imagens devem ser do tipo jpg, jpeg, png, gif ou svg.',
+                ]);
+            }
         }
 
         if ($request->allFiles()) {
