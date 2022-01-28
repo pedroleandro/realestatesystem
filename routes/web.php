@@ -34,9 +34,18 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function () {
 
 });
 
-Route::group(['prefix' => 'component', 'namespace' => 'Web', 'as' => 'component.'], function (){
+Route::group(['prefix' => 'component', 'namespace' => 'Web', 'as' => 'component.'], function () {
 
     Route::post('main-filter/search', 'FilterController@search')->name('main-filter.search');
+    Route::post('main-filter/category', 'FilterController@category')->name('main-filter.category');
+    Route::post('main-filter/type', 'FilterController@type')->name('main-filter.type');
+    Route::post('main-filter/neighborhood', 'FilterController@neighborhood')->name('main-filter.neighborhood');
+    Route::post('main-filter/bedrooms', 'FilterController@bedrooms')->name('main-filter.bedrooms');
+    Route::post('main-filter/suites', 'FilterController@suites')->name('main-filter.suites');
+    Route::post('main-filter/bathrooms', 'FilterController@bathrooms')->name('main-filter.bathrooms');
+    Route::post('main-filter/garage', 'FilterController@garage')->name('main-filter.garage');
+    Route::post('main-filter/price-base', 'FilterController@priceBase')->name('main-filter.priceBase');
+    Route::post('main-filter/price-limit', 'FilterController@priceLimit')->name('main-filter.priceLimit');
 
 });
 
