@@ -216,22 +216,24 @@
                         <div class="main_property_contact">
                             <h2 class="bg-front text-white">Entre em contato</h2>
 
-                            <form action="">
+                            <form action="{{ route('web.sendEmail') }}" method="post">
+
+                                @csrf
                                 <div class="form-group">
                                     <label for="name">Seu nome:</label>
-                                    <input type="text" id="name" class="form-control"
+                                    <input type="text" id="name" name="name" class="form-control"
                                            placeholder="Informe seu nome completo">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="telephone">Seu telefone:</label>
-                                    <input type="tel" id="telephone" class="form-control"
+                                    <input type="tel" id="telephone" name="cell" class="form-control"
                                            placeholder="Informe seu telefone com DDD">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Seu e-mail:</label>
-                                    <input type="email" id="email" class="form-control"
+                                    <input type="email" id="email" name="email" class="form-control"
                                            placeholder="Informe seu melhor e-mail">
                                 </div>
 

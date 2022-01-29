@@ -3,7 +3,9 @@
 namespace LaraDev\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use LaraDev\Http\Controllers\Controller;
+use LaraDev\Mail\Web\Contact;
 use LaraDev\Property;
 
 class WebController extends Controller
@@ -38,7 +40,9 @@ class WebController extends Controller
             true
         );
 
-        return view('web.spotlight');
+        return view('web.spotlight', [
+            'head' => $head
+        ]);
     }
 
     public function contact()
@@ -222,5 +226,25 @@ class WebController extends Controller
             'head' => $head,
             'properties' => $properties
         ]);
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $data = [
+            'reply_name' => $request->name,
+            'reply_email' => $request->email,
+            'cell' => $request->cell,
+            'message' => $request->message,
+        ];
+
+//        Mail::send(new Contact($data));
+//        return redirect()->route('web.sendEmailSuccess');
+
+        return new Contact($data);
+    }
+
+    public function sendEmailSuccess()
+    {
+        return view('emails.optin');
     }
 }

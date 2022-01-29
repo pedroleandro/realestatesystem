@@ -11,14 +11,21 @@
             <p>Preencha o formulário abaixo e vamos lhe direcionar para alguém que entende a sua necessidade!</p>
 
             <div class="row text-left">
-                <form action="">
+                <form action="{{ route('web.sendEmail') }}" method="post">
+
+                    @csrf
+
                     <h2 class="icon-envelope text-black-50">Envie um e-mail</h2>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Insira seu nome">
+                        <input type="text" name="name" class="form-control" placeholder="Insira seu nome">
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Insira seu melhor e-mail">
+                        <input type="email" name="email" class="form-control" placeholder="Insira seu melhor e-mail">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" name="cell" class="form-control" placeholder="Insira seu telefone">
                     </div>
 
                     <div class="form-group">

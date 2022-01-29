@@ -23,6 +23,8 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function () {
 
     /** Página de contato */
     Route::get('/contato', 'WebController@contact')->name('contact');
+    Route::post('/contato/sendEmail', 'WebController@sendEmail')->name('sendEmail');
+    Route::post('/contato/sucesso', 'WebController@sendEmailSuccess')->name('sendEmailSuccess');
 
     /** Página de locação */
     Route::get('/quero-alugar', 'WebController@rent')->name('rent');
