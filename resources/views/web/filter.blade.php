@@ -188,6 +188,11 @@
                                 </div>
 
                             @endforeach
+                        @else
+                            <div class="col-12 p-5 bg-white">
+                                <h2 class="text-front icon-info text-center">Whoooops!! Não encontramos nenhum imóvel para você comprar ou alugar </h2>
+                                <p class="text-center">Utilize o filtro avançado para encontrar o lar dos seus sonhos...</p>
+                            </div>
                         @endif
 
                     </section>

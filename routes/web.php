@@ -32,6 +32,9 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function () {
     /** Página de filtro */
     Route::match(['post', 'get'], '/filtro', 'WebController@filter')->name('filter');
 
+    Route::get('/experiencias', 'WebController@experience')->name('experience');
+    Route::get('/experiencias/{slug}', 'WebController@experienceCategory')->name('experienceCategory');
+
 });
 
 Route::group(['prefix' => 'component', 'namespace' => 'Web', 'as' => 'component.'], function () {
