@@ -67,10 +67,11 @@
                                 @if($property->sale == true && !empty($property->sale_price) && $property->rent == true && !empty($property->rent_price))
                                     <p class="main_property_price_big">Valor do Imóvel: R$ {{ $property->sale_price }}
                                         <br>
-                                    ou Valor do Aluguel: R$ {{ $property->rent_price }}
+                                        ou Valor do Aluguel: R$ {{ $property->rent_price }}
                                         /mês</p>
                                 @elseif($property->sale == true && !empty($property->sale_price))
-                                    <p class="main_property_price_big">Valor do Imóvel: R$ {{ $property->sale_price }}</p>
+                                    <p class="main_property_price_big">Valor do Imóvel:
+                                        R$ {{ $property->sale_price }}</p>
                                 @elseif($property->rent == true && !empty($property->rent_price))
                                     <p class="main_property_price_big">Valor do Aluguel: R$ {{ $property->rent_price }}
                                         /mês</p>
@@ -207,9 +208,10 @@
                     </div>
 
                     <div class="col-12 col-lg-4">
-                        <button class="btn btn-outline-success btn-lg btn-block icon-whatsapp mb-3">Converse com o
+                        <a href="https://api.whatsapp.com/send?phone=DDI+DDD+TELEFONE&text=Olá, preciso de ajuda com o login."
+                           class="btn btn-outline-success btn-lg btn-block icon-whatsapp mb-3">Converse com o
                             Corretor!
-                        </button>
+                        </a>
 
                         <div class="main_property_contact">
                             <h2 class="bg-front text-white">Entre em contato</h2>
