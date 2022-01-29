@@ -68,7 +68,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbar">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="{{ route('web.home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="javascript:void(0)" class="nav-link text-front">Destaque</a></li>
+                    <li class="nav-item"><a href="{{ route('web.spotlight') }}" class="nav-link text-front">Destaque</a>
+                    </li>
                     <li class="nav-item"><a href="{{ route('web.rent') }}" class="nav-link">Alugar</a></li>
                     <li class="nav-item"><a href="{{ route('web.sale') }}" class="nav-link">Comprar</a></li>
                     <li class="nav-item"><a href="{{ route('web.contact') }}" class="nav-link">Contato</a></li>
@@ -99,7 +100,7 @@
 </article>
 
 <section class="main_footer bg-light"
-         style="background: url('frontend/assets/images/footer.png') repeat-x bottom center; background-size: 10%;">
+         style="background: url({{asset('frontend/assets/images/footer.png')}}) repeat-x bottom center; background-size: 10%;">
     <div class="container pt-5" style="padding-bottom: 120px;">
 
         <div class="row d-flex justify-content-around text-muted">
@@ -108,7 +109,7 @@
                 <h1 class="pb-2">Navegue <span class="text-front">Aqui!</span></h1>
                 <ul>
                     <li><a href="{{ route('web.home') }}">Home</a></li>
-                    <li><a href="javascript:void(0)" class="text-front">Destaque</a></li>
+                    <li><a href="{{ route('web.spotlight') }}" class="text-front">Destaque</a></li>
                     <li><a href="{{ route('web.rent') }}">Alugar</a></li>
                     <li><a href="{{ route('web.sale') }}">Comprar</a></li>
                     <li><a href="{{ route('web.contact') }}">Contato</a></li>

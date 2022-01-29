@@ -9,8 +9,8 @@
                     <p class="main_slide_content text-white">Encontre o <b>Imóvel ideal</b> para você e <b>sua
                             família</b>
                         morar na praia!</p>
-                    <a href="javascript:void(0);" class="btn btn-front btn-lg text-white">Quero <b>Alugar</b>!</a>
-                    <a href="javascript:void(0);" class="btn btn-front btn-lg text-white">Quero <b>Comprar</b>!</a>
+                    <a href="{{ route('web.rent') }}" class="btn btn-front btn-lg text-white">Quero <b>Alugar</b>!</a>
+                    <a href="{{ route('web.sale') }}" class="btn btn-front btn-lg text-white">Quero <b>Comprar</b>!</a>
                 </div>
             </div>
         </div>

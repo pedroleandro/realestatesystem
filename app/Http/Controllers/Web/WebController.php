@@ -28,6 +28,19 @@ class WebController extends Controller
         ]);
     }
 
+    public function spotlight()
+    {
+        $head = $this->seo->render(
+            env('APP_NAME') . ' - Home',
+            'Confire nossos destaques na melhor e mais completa imobiliária da região dos cocais',
+            route('web.spotlight'),
+            asset('frontend/assets/images/share.png'),
+            true
+        );
+
+        return view('web.spotlight');
+    }
+
     public function contact()
     {
         $head = $this->seo->render(

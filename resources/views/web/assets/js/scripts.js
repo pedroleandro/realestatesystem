@@ -82,4 +82,6 @@ $(function () {
 
     });
 
+    delete $.ajaxSettings.headers['X-CSRF-TOKEN'];
+
 });

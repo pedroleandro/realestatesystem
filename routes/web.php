@@ -18,6 +18,9 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function () {
     /** Página inicial */
     Route::get('/', 'WebController@home')->name('home');
 
+    /** Página destaque */
+    Route::get('/destaque', 'WebController@spotlight')->name('spotlight');
+
     /** Página de contato */
     Route::get('/contato', 'WebController@contact')->name('contact');
 
